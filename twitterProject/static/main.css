@@ -1,0 +1,16 @@
+body{
+
+}
+
+.main-cont{
+    width:70%;
+    padding-top: 5rem;
+}
+
+.twitter_logo{
+    margin: 1rem;
+}
+
+.carousal-item .active{
+    display: block;
+}

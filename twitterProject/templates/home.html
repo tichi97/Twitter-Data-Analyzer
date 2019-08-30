@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{%block content%}
+    <div>
+
+    </div>
+    <div class="main-cont d-flex flex-column">
+
+      <img src="static/images/twitter.png" class= "img-fluid align-self-center twitter_logo" alt="twitter_logo" width="25%" height="auto">
+      <div class="form-container">
+        {% if action=="trends" %}
+        <form method="POST" action="{{ url_for('trendResults') }}">
+        {% else %}
+        <form method="POST" action="{{ url_for('results') }}">
+        {% endif %}
+          {{ form.hidden_tag() }}
+          <fieldset class="form-group">
+            <div class="form-group">
+              {{form.name.label(class="form-control-label")}}
+              {% if form.name.errors %}
+                  {{form.name(class="form-control form-control-lg is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.name.errors %}
+                          <span>{{error}}</span>
+                      {% endfor %}
+                  </div>
+              {% else %}
+                  {{form.name(class="form-control form-control-lg")}}
+              {% endif %}
+            </div>
+          </fieldset>
+          <div class="form-group d-flex justify-content-center">
+            {{form.submit(class="btn btn-outline-info")}}
+          </div>
+        </form>
+      </div>
+      {% if action=="trends" %}
+        <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg mt-4 w-50 align-self-center">Search usernames here</a>
+        {% else %}
+        <a href="{{ url_for('trends') }}" class="btn btn-primary btn-lg mt-4 w-50 align-self-center">Search trends here</a>
+        {% endif %}
+
+    </div>
+{%endblock content%}
