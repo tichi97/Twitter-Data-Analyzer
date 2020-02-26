@@ -129,6 +129,7 @@ class TweetAnalyzer():
         return df
 
     def filter_tweets(self, search_terms, date):
-        tweets = Cursor(self.api.search, q=search_terms,
-                        lang="en", since=date).items(100)
+        tweets = []
+        for tweet in Cursor(self.api.search, q=search_terms, lang="en", since=date).items(100):
+            tweets.append(tweet)
         return tweets

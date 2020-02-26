@@ -1,5 +1,9 @@
 body{
+    background-image: url('images/background.svg');
+    background-size: cover;
+    background-position: 0 0;
 
+    animation: move 6s linear infinite;
 }
 
 .main-cont{
@@ -13,4 +17,56 @@ body{
 
 .carousal-item .active{
     display: block;
+}
+
+.landing-logo{
+    position:absolute;
+    top:-50%;
+    left:35%;
+    animation:1s grow 2s linear, bounce 1s linear;
+
+    animation-fill-mode:forwards;
+
+}
+.floaty{
+    position: relative;
+    top:0%;
+}
+
+@keyframes move{
+    0%{
+        background-position: 0 0;
+    }
+    50%{
+        background-position: 0 2%;
+    }
+    100%{
+        background-position: 0 0;
+    }
+}
+
+@keyframes bounce{
+    0%{
+        top:-50%;
+    }
+    85%{
+        top:40%;
+    }
+    100%{
+        top:30%;
+    }
+}
+@keyframes grow{
+    0%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.2);
+    }
+    90%{
+        transform: scale(0.9);
+    }
+    100%{
+        transform:scale(1);
+    }
 }

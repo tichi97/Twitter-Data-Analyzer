@@ -18,13 +18,21 @@ def results():
         return redirect(url_for('home'))
 
 
-@app.route("/")
 @app.route("/home", methods=['GET', 'POST'])
 def home():
     form = SearchForm()
     # if form.validate_on_submit():
     #     return redirect(url_for('results'))
     return render_template('home.html', form=form)
+
+
+@app.route("/")
+@app.route("/landing", methods=['GET', 'POST'])
+def landing():
+    # form = SearchForm()
+    # if form.validate_on_submit():
+    #     return redirect(url_for('results'))
+    return render_template('landing.html')
 
 
 @app.route("/trends", methods=['GET', 'POST'])
@@ -39,8 +47,21 @@ def trendResults():
     if request.method == "POST":
         topic = request.form["name"]
         # name = "jackieaina"
-        tweets, loc, dates = twitter.trendTweets(topic)
-        graph1 = build_trend_chart(loc)
-        return render_template('results.html', graph1=graph1, tweets=tweets, topic=topic)
+        df = twitter.trendTweets(topic)
+        piechart = build_trend_chart(topic)
+
+        return render_template('results.html', graph1=piechart, tweets=df['tweets'], topic=topic)
     else:
         return redirect(url_for('home'))
+
+
+# @app.route("/trendResults", methods=['GET', 'POST'])
+# def trendResults():
+#     if request.method == "POST":
+#         topic = request.form["name"]
+#         # name = "jackieaina"
+#         tweets, loc, dates = twitter.trendTweets(topic)
+#         graph1 = build_trend_chart(loc)
+#         return render_template('results.html', graph1=graph1, tweets=tweets, topic=topic)
+#     else:
+#         return redirect(url_for('home'))

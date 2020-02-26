@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{%block content%}
+  <div class="container justify-content-center">
+    <img src="static/images/twitter.png" class= "img-fluid align-self-center twitter_logo landing-logo" id=" "alt="twitter_logo" width="25%" height="auto">
+  </div>
+  <script>
+    function landing(){
+      window.location.href = "{{url_for('home')}}";
+    }
+  </script>
+{%endblock content%}

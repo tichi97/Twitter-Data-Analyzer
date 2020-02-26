@@ -29,6 +29,30 @@ def build_pie_chart(name):
     return 'data:images/png;base64,{}'.format(graph_url)
 
 
+def build_trend_chart(topic):
+    df = twitter.trendTweets(topic)
+    img = io.BytesIO()
+    labels = ['Negative', 'Positive', 'Neutral']
+    neg = len([v for v in df['sentiment'] if v == -1])
+    pos = len([v for v in df['sentiment'] if v == 1])
+    nt = len([v for v in df['sentiment'] if v == 0])
+    sizes = [neg, pos, nt]
+    colors = ['red', 'blue', 'grey']
+    explode = (0, 0.1, 0)  # explode 1st slice
+
+    # Plot
+    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+
+    plt.axis('equal')
+
+    plt.savefig(img, format='png')
+    img.seek(0)
+    graph_url = base64.b64encode(img.getvalue()).decode()
+    plt.close()
+    return 'data:images/png;base64,{}'.format(graph_url)
+
+
 def build_bar_chart(name):
     df = twitter.tweets(name)
     neg = len([v for v in df['sentiment'] if v == -1])
@@ -49,25 +73,25 @@ def build_bar_chart(name):
     return 'data:images/png;base64,{}'.format(graph_url)
 
 
-def build_trend_chart(loc):
-    img = io.BytesIO()
-    objects = set(loc)
-    y_pos = np.arange(len(objects))
-    performance = []
-    countries = {}
-    for country in objects:
-        num = loc.count(country)
-        # countries[country] = num
-        performance.append(num)
+# def build_trend_chart(loc):
+#     img = io.BytesIO()
+#     objects = set(loc)
+#     y_pos = np.arange(len(objects))
+#     performance = []
+#     countries = {}
+#     for country in objects:
+#         num = loc.count(country)
+#         # countries[country] = num
+#         performance.append(num)
 
-    countries
-    plt.barh(y_pos, performance, align='center', alpha=0.5)
-    plt.yticks(y_pos, objects)
-    plt.xlabel('Number of Tweets')
-    plt.title('Number of Tweets per Country')
+#     countries
+#     plt.barh(y_pos, performance, align='center', alpha=0.5)
+#     plt.yticks(y_pos, objects)
+#     plt.xlabel('Number of Tweets')
+#     plt.title('Number of Tweets per Country')
 
-    plt.savefig(img, format='png')
-    img.seek(0)
-    graph_url = base64.b64encode(img.getvalue()).decode()
-    plt.close()
-    return 'data:images/png;base64,{}'.format(graph_url)
+#     plt.savefig(img, format='png')
+#     img.seek(0)
+#     graph_url = base64.b64encode(img.getvalue()).decode()
+#     plt.close()
+#     return 'data:images/png;base64,{}'.format(graph_url)
