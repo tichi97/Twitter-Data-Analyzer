@@ -27,20 +27,3 @@ def trendTweets(topic):
         [tweetAnalyzer.analyze_sentiment(tweet) for tweet in df['tweets']])
     return df
 
-
-# def trendTweets(topic):
-#     tweetAnalyzer = TweetAnalyzer()
-
-#     topic = topic.split(" ")
-#     topic = "+".join(topic)
-
-#     tweets = tweetAnalyzer.filter_tweets(topic, "2019-01-01")
-#     loc = []
-#     txts = []
-#     dates = []
-#     for tweet in tweets:
-#         txts.append(tweet.text)
-#         dates.append(tweet.created_at)
-#         if tweet.place:
-#             loc.append(tweet.place.country)
-#     return txts, loc, dates
