@@ -18,7 +18,7 @@ def results():
         name = form.name.data
         # name = "jackieaina"
         df = twitter.tweets(name)
-        if not df.empty:
+        if df:
             piechart = build_pie_chart(name)
             barchart = build_bar_chart(name)
             return render_template('results.html', graph1=piechart, graph2=barchart, name=name, tweets=df['tweets'])
