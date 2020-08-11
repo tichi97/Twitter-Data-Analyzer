@@ -13,7 +13,7 @@ def tweets(username):
         df['sentiment'] = np.array(
             [tweetAnalyzer.analyze_sentiment(tweet) for tweet in df['tweets']])
     except:
-        df=None
+        df=np.empty([2,2])
     return df
 
 
