@@ -5,6 +5,7 @@ from twitterProject import twitter
 import numpy as np
 
 
+
 def build_pie_chart(name):
     df = twitter.tweets(name)
     img = io.BytesIO()
@@ -13,16 +14,27 @@ def build_pie_chart(name):
     pos = len([v for v in df['sentiment'] if v == 1])
     nt = len([v for v in df['sentiment'] if v == 0])
     sizes = [neg, pos, nt]
-    colors = ['red', 'blue', 'grey']
-    explode = (0, 0.1, 0)  # explode 1st slice
+    colors = ['#FF6B6B', '#5BC0EB', '#ACF39D']
+    # explode = (0, 0.1, 0)  # explode 1st slice
 
     # Plot
-    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
-            autopct='%1.1f%%', shadow=True, startangle=140)
+    patches, texts, autotexts=plt.pie(sizes,labels=labels, colors=colors,
+            autopct='%1.1f%%', startangle=90)
+
+    for text in texts:
+        text.set_color('grey')
+    for autotext in autotexts:
+        autotext.set_color('grey')
+
+    #draw circle
+    # centre_circle = plt.Circle((0,0),0.70,fc='white')
+    # fig = plt.gcf()
+    # fig.gca().add_artist(centre_circle)
+
 
     plt.axis('equal')
-
-    plt.savefig(img, format='png')
+    plt.tight_layout()
+    plt.savefig(img, format='png', transparent=True)
     img.seek(0)
     graph_url = base64.b64encode(img.getvalue()).decode()
     plt.close()
@@ -37,16 +49,21 @@ def build_trend_chart(topic):
     pos = len([v for v in df['sentiment'] if v == 1])
     nt = len([v for v in df['sentiment'] if v == 0])
     sizes = [neg, pos, nt]
-    colors = ['red', 'blue', 'grey']
+    colors = ['#FF6B6B', '#5BC0EB', '#ACF39D']
     explode = (0, 0.1, 0)  # explode 1st slice
 
     # Plot
-    plt.pie(sizes, explode=explode, labels=labels, colors=colors,
-            autopct='%1.1f%%', shadow=True, startangle=140)
+    patches, texts, autotexts=plt.pie(sizes,labels=labels, colors=colors,
+            autopct='%1.1f%%', startangle=90)
+
+    for text in texts:
+        text.set_color('grey')
+    for autotext in autotexts:
+        autotext.set_color('grey')
 
     plt.axis('equal')
 
-    plt.savefig(img, format='png')
+    plt.savefig(img, format='png',transparent=True)
     img.seek(0)
     graph_url = base64.b64encode(img.getvalue()).decode()
     plt.close()
@@ -62,11 +79,15 @@ def build_bar_chart(name):
     y_pos = np.arange(len(objects))
     performance = [neg, pos]
 
-    plt.bar(y_pos, performance, align='center', alpha=0.5)
+    plt.bar(y_pos, performance, align='center', alpha=0.5, color = ['#FF6B6B', '#5BC0EB'])
     plt.xticks(y_pos, objects)
-    plt.ylabel('Number of Tweets')
-    plt.title('Positive Tweets vs Negative Tweets')
-    plt.savefig(img, format='png')
+    y= plt.ylabel('Number of Tweets')
+    t= plt.title('Positive Tweets vs Negative Tweets')
+    y.set_color("grey")
+    t.set_color("grey")
+
+
+    plt.savefig(img, format='png',transparent=True)
     img.seek(0)
     graph_url = base64.b64encode(img.getvalue()).decode()
     plt.close()

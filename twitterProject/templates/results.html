@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
 {%block content%}
-    <div class="d-block">
+    <div class="d-block results">
       <div class="border-bottom border-primary d-flex flex-column">
        <div class="text-center">
-       <a  href="{{ url_for('home') }}"><img src="static/images/twitter.png" class= "img-fluid align-self-center twitter_logo" alt="twitter_logo" width="5%" height="auto"></a>
+       <a  href="{{ url_for('home') }}"><img src="static/images/twitter.png" class= "img-fluid align-self-center twitter_logo mt-2 mb-2" alt="twitter_logo" width="5%" height="auto"></a>
        </div>
        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
@@ -24,18 +24,26 @@
         <h3 class="text-center m-4">@{{name}}</h3>
       {% endif %}
 
-      <div class="d-flex justify-content-around" >
-        <div class = "graph w-auto h-100 ">
-          <img src="{{graph1}}">
-        </div>
+      
 
       {% if name %}
-        <div class = "graph w-auto h-100 ">
+      <div class="d-flex justify-content-around flex-wrap graph-cont" >
+        <div class = "graph w-auto h-100 d-inline ">
+          <img src="{{graph1}}">
+        </div>
+        <div class = "graph w-auto h-100 d-inline">
           <img src="{{graph2}}">
         </div>
+      </div>
+        {%else%}
+        <div class="d-flex justify-content-around flex-wrap" >
+        <div class = "graph w-auto h-100 d-inline ">
+          <img src="{{graph1}}">
+        </div>
+      </div>
       {% endif %}
 
-      </div>
+     
 
 
     </div>

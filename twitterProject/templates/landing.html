@@ -1,11 +1,13 @@
 {% extends "layout.html" %}
-{%block content%}
-  <div class="container justify-content-center">
-    <img src="static/images/twitter.png" class= "img-fluid align-self-center twitter_logo landing-logo" id=" "alt="twitter_logo" width="25%" height="auto">
-  </div>
-  <script>
-    function landing(){
-      window.location.href = "{{url_for('home')}}";
-    }
-  </script>
-{%endblock content%}
+{%block landing%}
+  <header class="masthead">
+    <div class="container d-flex h-100 align-items-center">
+        <div class="mx-auto text-center">
+            <h1 class="mx-auto my-0 text-uppercase">Tweet Analyzer</h1>
+            <h2 class="text-white-50 mx-auto mt-2 mb-5">Find out how positive or negative people's tweets are</h2>
+            <a class="btn btn-primary js-scroll-trigger" href="{{url_for('home')}}">Get Started</a>
+            <!-- <a class="btn btn-primary js-scroll-trigger" href="{{url_for('home')}}">Get Started</a> -->
+        </div>
+    </div>
+ </header>
+{%endblock landing%}
