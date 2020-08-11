@@ -1,5 +1,6 @@
 from twitterProject.models import TweetAnalyzer, TwitterClient
 import numpy as np
+import pandas as pd 
 
 
 def tweets(username):
@@ -13,7 +14,7 @@ def tweets(username):
         df['sentiment'] = np.array(
             [tweetAnalyzer.analyze_sentiment(tweet) for tweet in df['tweets']])
     except:
-        df=np.empty([2,2])
+        df=pd.DataFrame() 
     return df
 
 
