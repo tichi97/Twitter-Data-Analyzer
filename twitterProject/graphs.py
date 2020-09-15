@@ -15,7 +15,7 @@ def build_pie_chart(name):
     nt = len([v for v in df['sentiment'] if v == 0])
     sizes = [neg, pos, nt]
     colors = ['#FF6B6B', '#5BC0EB', '#ACF39D']
-    # explode = (0, 0.1, 0)  # explode 1st slice
+    
 
     # Plot
     patches, texts, autotexts=plt.pie(sizes,labels=labels, colors=colors,
@@ -25,11 +25,6 @@ def build_pie_chart(name):
         text.set_color('grey')
     for autotext in autotexts:
         autotext.set_color('grey')
-
-    #draw circle
-    # centre_circle = plt.Circle((0,0),0.70,fc='white')
-    # fig = plt.gcf()
-    # fig.gca().add_artist(centre_circle)
 
 
     plt.axis('equal')
@@ -94,25 +89,3 @@ def build_bar_chart(name):
     return 'data:images/png;base64,{}'.format(graph_url)
 
 
-# def build_trend_chart(loc):
-#     img = io.BytesIO()
-#     objects = set(loc)
-#     y_pos = np.arange(len(objects))
-#     performance = []
-#     countries = {}
-#     for country in objects:
-#         num = loc.count(country)
-#         # countries[country] = num
-#         performance.append(num)
-
-#     countries
-#     plt.barh(y_pos, performance, align='center', alpha=0.5)
-#     plt.yticks(y_pos, objects)
-#     plt.xlabel('Number of Tweets')
-#     plt.title('Number of Tweets per Country')
-
-#     plt.savefig(img, format='png')
-#     img.seek(0)
-#     graph_url = base64.b64encode(img.getvalue()).decode()
-#     plt.close()
-#     return 'data:images/png;base64,{}'.format(graph_url)

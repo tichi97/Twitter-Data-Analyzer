@@ -16,7 +16,6 @@ def results():
     form = SearchForm()
     if form.validate_on_submit:
         name = form.name.data
-        # name = "jackieaina"
         df = twitter.tweets(name)
         if not df.empty:
             piechart = build_pie_chart(name)
@@ -33,8 +32,7 @@ def results():
 def home():
     form = SearchForm()
     trendform = TrendForm()
-    # if form.validate_on_submit():
-    #     return redirect(url_for('results'))
+    
     return render_template('home.html', form=form, trendform=trendform)
 
 
@@ -45,7 +43,6 @@ def trendResults():
     
     if trendform.validate_on_submit():
         topic = trendform.trend.data
-        # name = "jackieaina"
         df = twitter.trendTweets(topic)
         piechart = build_trend_chart(topic)
 

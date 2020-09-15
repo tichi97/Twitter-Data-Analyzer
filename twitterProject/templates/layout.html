@@ -11,8 +11,6 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='main.css') }}">
     
-    <!-- Font Awesome icons (free version)-->
-    
 
 
     {% if title %}
@@ -34,12 +32,11 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{url_for('home')}}">New Search</a></li>
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Users</a></li> -->
-                        <!-- <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#signup">Contact</a></li> -->
                     </ul>
                 </div>
             </div>
         </nav>
+    <!-- End Navigation -->
     <main role = "main" class="">
         {% with messages = get_flashed_messages(with_categories=true) %}
                 {%if messages%}

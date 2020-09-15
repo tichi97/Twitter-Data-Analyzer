@@ -7,10 +7,11 @@ from tweepy import Stream
 
 from textblob import TextBlob
 
-from twitterProject import twitter_credentials
+
+import os
 import numpy as np
 import pandas as pd
-import re  # regular expression
+import re  
 import matplotlib.pyplot as plt
 
 
@@ -45,10 +46,10 @@ class TwitterClient():
 
 class TwitterAuthenticator():
     def authenticate_twitter_app(self):
-        auth = OAuthHandler(twitter_credentials.CONSUMER_KEY,
-                            twitter_credentials.CONSUMER_SECRET)
-        auth.set_access_token(twitter_credentials.ACCESS_TOKEN,
-                              twitter_credentials.ACCESS_TOKEN_SECRET)
+        auth = OAuthHandler(os.environ.get('CONSUMER_KEY'),
+                            os.environ.get('CONSUMER_SECRET'))
+        auth.set_access_token(os.environ.get('ACCESS_TOKEN'),
+                              os.environ.get('ACCESS_TOKEN_SECRET'))
         return auth
 
 
